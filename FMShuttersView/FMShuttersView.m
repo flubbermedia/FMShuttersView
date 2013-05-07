@@ -76,6 +76,7 @@
 		shadowLayer.position = CGPointMake(-_shutterSize.width * 0.5, -_shutterSize.height * 0.5);
 		shadowLayer.anchorPoint = CGPointMake(0.0, 0.0);
 		shadowLayer.backgroundColor = [UIColor blackColor].CGColor;
+		shadowLayer.opacity = 0;
 		
 		[baseLayer addSublayer:frontLayer];
 		[baseLayer addSublayer:backLayer];
