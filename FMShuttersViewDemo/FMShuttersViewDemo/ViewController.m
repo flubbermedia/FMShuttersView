@@ -8,6 +8,7 @@
 
 #import "ViewController.h"
 #import "FMShuttersView.h"
+#import <QuartzCore/QuartzCore.h>
 
 @interface ViewController ()
 
@@ -35,6 +36,8 @@
     // shutters view
     FMShuttersView *shuttersView = [[FMShuttersView alloc] initWithFrontView:frontView backView:backView numberOfShutters:10];
     shuttersView.center = CGPointMake(CGRectGetWidth(self.view.frame)/2, CGRectGetHeight(self.view.frame)/2);
+	shuttersView.layer.borderWidth = 1.;
+	shuttersView.layer.borderColor = [UIColor whiteColor].CGColor;
     [self.view addSubview:shuttersView];
 }
 
