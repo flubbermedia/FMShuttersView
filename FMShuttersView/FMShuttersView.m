@@ -71,8 +71,15 @@
 		backLayer.doubleSided = NO;
 		backLayer.contents = (id)[self renderImageFromView:_backView withRect:contentFrame].CGImage;
 		
+		CALayer *shadowLayer = [CALayer layer];
+		shadowLayer.frame = layerFrame;
+		shadowLayer.position = CGPointMake(-_shutterSize.width * 0.5, -_shutterSize.height * 0.5);
+		shadowLayer.anchorPoint = CGPointMake(0.0, 0.0);
+		shadowLayer.backgroundColor = [UIColor blackColor].CGColor;
+		
 		[baseLayer addSublayer:frontLayer];
 		[baseLayer addSublayer:backLayer];
+		[baseLayer addSublayer:shadowLayer];
 		
 		[self.layer addSublayer:baseLayer];
 		
@@ -133,6 +140,9 @@
 		
 		animated ? nil : [CATransaction setAnimationDuration:0];
 		layer.sublayerTransform = [self defaultTransform3DRotated:angle];
+		
+		CALayer *shadowLayer = [layer.sublayers objectAtIndex:2];
+		shadowLayer.opacity = 0.8 * (1 - fabsf(ratio));
 	}
 }
 
