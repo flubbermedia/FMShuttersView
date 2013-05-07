@@ -10,6 +10,9 @@
 
 @interface FMShuttersView : UIView
 
-- (id)initWithFrontView:(UIView*)frontView backView:(UIView*)backView;
+@property (readonly) UIView *frontView;
+@property (readonly) UIView *backView;
+
+- (id)initWithFrontView:(UIView *)frontView backView:(UIView *)backView;
 
 @end

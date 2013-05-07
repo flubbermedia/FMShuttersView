@@ -7,10 +7,11 @@
 //
 
 #import "FMShuttersView.h"
+#import <QuartzCore/QuartzCore.h>
 
 @implementation FMShuttersView
 
-- (id)initWithFrontView:(UIView*)frontView backView:(UIView*)backView
+- (id)initWithFrontView:(UIView *)frontView backView:(UIView *)backView
 {
 	//
 	return self;
@@ -25,13 +26,35 @@
     return self;
 }
 
-/*
-// Only override drawRect: if you perform custom drawing.
-// An empty implementation adversely affects performance during animation.
-- (void)drawRect:(CGRect)rect
+- (NSArray *)splittedLayersForView:(UIView *)view
 {
-    // Drawing code
+    NSMutableArray *m_layers = [NSMutableArray new];
+    
+    int numberOfSlices = 10;
+    for (int i=0; i<numberOfSlices; i++) {
+        CGFloat width = CGRectGetWidth(view.frame)/numberOfSlices;
+        CGRect frame = CGRectMake(width * i, 0, width, CGRectGetHeight(view.frame));
+        CALayer *layer = [CALayer layer];
+        layer.contents = (id)[self renderImageFromView:view withRect:frame].CGImage;
+        layer.frame = frame;
+        [self.layer addSublayer:layer];
+        [m_layers addObject:layer];
+    }
+    
+    view.hidden = YES;
+    
+    return [NSArray arrayWithArray:m_layers];
 }
-*/
+
+- (UIImage *)renderImageFromView:(UIView *)view withRect:(CGRect)frame
+{
+	UIGraphicsBeginImageContextWithOptions(frame.size, YES, 0);
+	CGContextRef context = UIGraphicsGetCurrentContext();
+	CGContextTranslateCTM(context, -frame.origin.x, -frame.origin.y);
+    [view.layer renderInContext:context];
+    UIImage *renderedImage = UIGraphicsGetImageFromCurrentImageContext();
+    UIGraphicsEndImageContext();
+    return renderedImage;
+}
 
 @end
