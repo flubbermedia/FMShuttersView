@@ -12,7 +12,8 @@
 
 @property (readonly) UIView *frontView;
 @property (readonly) UIView *backView;
+@property (readonly) NSInteger numberOfShutters;
 
-- (id)initWithFrontView:(UIView *)frontView backView:(UIView *)backView;
+- (id)initWithFrontView:(UIView *)frontView backView:(UIView *)backView numberOfShutters:(NSInteger)numberOfShutters;
 
 @end

@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		14E8A4BD17393EAD0073D412 /* image01.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 14E8A4BC17393EAD0073D412 /* image01.jpg */; };
 		65D2292917391CD3000BE0B4 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 65D2292817391CD3000BE0B4 /* UIKit.framework */; };
 		65D2292B17391CD3000BE0B4 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 65D2292A17391CD3000BE0B4 /* Foundation.framework */; };
 		65D2292D17391CD3000BE0B4 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 65D2292C17391CD3000BE0B4 /* CoreGraphics.framework */; };
@@ -24,6 +25,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		14E8A4BC17393EAD0073D412 /* image01.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = image01.jpg; sourceTree = "<group>"; };
 		65D2292517391CD3000BE0B4 /* FMShuttersViewDemo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = FMShuttersViewDemo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		65D2292817391CD3000BE0B4 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		65D2292A17391CD3000BE0B4 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -107,6 +109,7 @@
 		65D2292F17391CD3000BE0B4 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				14E8A4BC17393EAD0073D412 /* image01.jpg */,
 				65D2293017391CD3000BE0B4 /* FMShuttersViewDemo-Info.plist */,
 				65D2293117391CD3000BE0B4 /* InfoPlist.strings */,
 				65D2293417391CD3000BE0B4 /* main.m */,
@@ -185,6 +188,7 @@
 				65D2293F17391CD3000BE0B4 /* Default-568h@2x.png in Resources */,
 				65D2294517391CD3000BE0B4 /* ViewController_iPhone.xib in Resources */,
 				65D2294817391CD3000BE0B4 /* ViewController_iPad.xib in Resources */,
+				14E8A4BD17393EAD0073D412 /* image01.jpg in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -331,6 +335,7 @@
 				65D2294D17391CD3000BE0B4 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
