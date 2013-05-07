@@ -51,8 +51,8 @@
 	
 	for (int i = 0; i < _numberOfShutters; i++)
 	{
-		CATransformLayer *baseLayer3D = [CATransformLayer layer];
-		baseLayer3D.position = CGPointMake(_shutterSize.width * (i + 0.5), _shutterSize.height * 0.5);
+		CATransformLayer *baseLayer = [CATransformLayer layer];
+		baseLayer.position = CGPointMake(_shutterSize.width * (i + 0.5), _shutterSize.height * 0.5);
 		
 		CGRect contentFrame = CGRectMake(_shutterSize.width * i, 0, _shutterSize.width, _shutterSize.height);
 		
@@ -71,12 +71,12 @@
 		backLayer.doubleSided = NO;
 		backLayer.contents = (id)[self renderImageFromView:_backView withRect:contentFrame].CGImage;
 		
-		[baseLayer3D addSublayer:frontLayer];
-		[baseLayer3D addSublayer:backLayer];
+		[baseLayer addSublayer:frontLayer];
+		[baseLayer addSublayer:backLayer];
 		
-		[self.layer addSublayer:baseLayer3D];
+		[self.layer addSublayer:baseLayer];
 		
-		[_shutterLayers addObject:baseLayer3D];
+		[_shutterLayers addObject:baseLayer];
 	}
 }
 
@@ -91,33 +91,57 @@
 	return renderedImage;
 }
 
-- (void)didTapOnMainView:(UITapGestureRecognizer *)tap
+- (void)didTapOnMainView:(UITapGestureRecognizer *)gesture
 {
 	NSLog(@"TAP");
 }
 
-- (void)didPan:(UIPanGestureRecognizer *)pan
+- (void)didPan:(UIPanGestureRecognizer *)gesture
 {
-	CGPoint distanceFromOrigin = [pan locationInView:self];
+	CGPoint location = [gesture locationInView:self];
 	
-	for (CATransformLayer *layer in _shutterLayers)
-	{
-		CGFloat angle = M_PI_2 * distanceFromOrigin.x / 50.0; //(distanceFromOrigin.x / self.bounds.size.width);
-		
-		NSLog(@"%f", angle);
-		[CATransaction setAnimationDuration:0];
-		layer.sublayerTransform = [self defaultTransform3DRotated:angle zoom:0];
+	if (gesture.state == UIGestureRecognizerStateBegan)
+    {
+		[self updateShutterLayersForLocation:location range:100 animated:YES];
+    }
+    
+    if (gesture.state == UIGestureRecognizerStateChanged)
+    {
+		[self updateShutterLayersForLocation:location range:100 animated:NO];
+	}
+	
+	if (gesture.state == UIGestureRecognizerStateEnded)
+    {
+		location.x = (location.x > self.bounds.size.width * 0.5) ? self.bounds.size.width : 0;
+		[self updateShutterLayersForLocation:location range:0 animated:YES];
 	}
 }
 
-- (CATransform3D)defaultTransform3DRotated:(CGFloat)angle zoom:(CGFloat)zoom
+#pragma mark - Cube transformations
+
+- (void)updateShutterLayersForLocation:(CGPoint)location range:(CGFloat)range animated:(BOOL)animated
 {
-	CATransform3D transform = CATransform3DIdentity;
+	for (CATransformLayer *layer in _shutterLayers)
+	{
+		CGFloat distance = layer.position.x - location.x;
+		CGFloat ratio = distance / range;
+		
+		ratio = (ratio < 1) ? ratio : 1;
+        ratio = (ratio > -1) ? ratio : -1;
+		
+		CGFloat angle = M_PI_2 + (M_PI_2 * ratio);
+		
+		animated ? nil : [CATransaction setAnimationDuration:0];
+		layer.sublayerTransform = [self defaultTransform3DRotated:angle];
+	}
+}
+
+- (CATransform3D)defaultTransform3DRotated:(CGFloat)angle
+{
+    CATransform3D transform = CATransform3DIdentity;
 	transform.m34 = -1.0 / (4.66 * _shutterSize.width);
-	//transform = CATransform3DTranslate(transform, 0.0, 0.0, -_shutterSize.width * 0.5 + zoom);
-	transform = CATransform3DRotate(transform, angle, 0.0, 1.0, 0.0);
-	//transform = CATransform3DTranslate(transform, 0.0, 0.0, _shutterSize.width * 0.5 + zoom);
-	return transform;
+    transform = CATransform3DRotate(transform, angle, 0.0, 1.0, 0.0);
+    return transform;
 }
 
 @end

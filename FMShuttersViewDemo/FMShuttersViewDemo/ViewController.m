@@ -20,25 +20,26 @@
 {
     [super viewDidLoad];
     
-    CGRect frame = CGRectMake(0, 0, 280, 150);
+    CGRect frame = CGRectMake(0, 0, 300, 150);
     
     // front view
-    UIImage *image = [UIImage imageNamed:@"image01.jpg"];
+    UIImage *image1 = [UIImage imageNamed:@"img01.jpg"];
     UIImageView *frontView = [[UIImageView alloc] initWithFrame:frame];
-    frontView.image = image;
+    frontView.image = image1;
     frontView.contentMode = UIViewContentModeScaleAspectFill;
     frontView.clipsToBounds = YES;
     
     // back view
-    UIView *backView = [[UIView alloc] initWithFrame:frame];
-    backView.backgroundColor = [UIColor purpleColor];
+    UIImage *image2 = [UIImage imageNamed:@"img02.jpg"];
+    UIImageView *backView = [[UIImageView alloc] initWithFrame:frame];
+    backView.image = image2;
+    backView.contentMode = UIViewContentModeScaleAspectFill;
+    backView.clipsToBounds = YES;
     
     // shutters view
-    FMShuttersView *shuttersView = [[FMShuttersView alloc] initWithFrontView:frontView backView:backView numberOfShutters:10];
+    FMShuttersView *shuttersView = [[FMShuttersView alloc] initWithFrontView:frontView backView:backView numberOfShutters:20];
     shuttersView.center = CGPointMake(CGRectGetWidth(self.view.frame)/2, CGRectGetHeight(self.view.frame)/2);
-	shuttersView.layer.borderWidth = 1.;
-	shuttersView.layer.borderColor = [UIColor whiteColor].CGColor;
-    [self.view addSubview:shuttersView];
+	[self.view addSubview:shuttersView];
 }
 
 - (void)didReceiveMemoryWarning
