@@ -19,6 +19,7 @@
 		65D2294217391CD3000BE0B4 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 65D2294117391CD3000BE0B4 /* ViewController.m */; };
 		65D2294517391CD3000BE0B4 /* ViewController_iPhone.xib in Resources */ = {isa = PBXBuildFile; fileRef = 65D2294317391CD3000BE0B4 /* ViewController_iPhone.xib */; };
 		65D2294817391CD3000BE0B4 /* ViewController_iPad.xib in Resources */ = {isa = PBXBuildFile; fileRef = 65D2294617391CD3000BE0B4 /* ViewController_iPad.xib */; };
+		65D229511739369F000BE0B4 /* FMShuttersView.m in Sources */ = {isa = PBXBuildFile; fileRef = 65D229501739369F000BE0B4 /* FMShuttersView.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -39,6 +40,8 @@
 		65D2294117391CD3000BE0B4 /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
 		65D2294417391CD3000BE0B4 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/ViewController_iPhone.xib; sourceTree = "<group>"; };
 		65D2294717391CD3000BE0B4 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/ViewController_iPad.xib; sourceTree = "<group>"; };
+		65D2294F1739369F000BE0B4 /* FMShuttersView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FMShuttersView.h; sourceTree = "<group>"; };
+		65D229501739369F000BE0B4 /* FMShuttersView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FMShuttersView.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -58,6 +61,7 @@
 		65D2291C17391CD3000BE0B4 = {
 			isa = PBXGroup;
 			children = (
+				65D2294E17393688000BE0B4 /* FMShuttersView */,
 				65D2292E17391CD3000BE0B4 /* FMShuttersViewDemo */,
 				65D2292717391CD3000BE0B4 /* Frameworks */,
 				65D2292617391CD3000BE0B4 /* Products */,
@@ -108,6 +112,16 @@
 				65D2293E17391CD3000BE0B4 /* Default-568h@2x.png */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		65D2294E17393688000BE0B4 /* FMShuttersView */ = {
+			isa = PBXGroup;
+			children = (
+				65D2294F1739369F000BE0B4 /* FMShuttersView.h */,
+				65D229501739369F000BE0B4 /* FMShuttersView.m */,
+			);
+			name = FMShuttersView;
+			path = ../FMShuttersView;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -180,6 +194,7 @@
 				65D2293517391CD3000BE0B4 /* main.m in Sources */,
 				65D2293917391CD3000BE0B4 /* AppDelegate.m in Sources */,
 				65D2294217391CD3000BE0B4 /* ViewController.m in Sources */,
+				65D229511739369F000BE0B4 /* FMShuttersView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
