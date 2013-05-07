@@ -13,15 +13,10 @@
 
 - (id)initWithFrontView:(UIView *)frontView backView:(UIView *)backView
 {
-	//
-	return self;
-}
-
-- (id)initWithFrame:(CGRect)frame
-{
-    self = [super initWithFrame:frame];
+    self = [super initWithFrame:frontView.frame];
     if (self) {
-        // Initialization code
+		_frontView = frontView;
+		_backView = backView;
     }
     return self;
 }
