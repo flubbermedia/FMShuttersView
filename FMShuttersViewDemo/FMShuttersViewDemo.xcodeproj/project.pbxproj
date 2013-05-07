@@ -20,6 +20,7 @@
 		65D2294517391CD3000BE0B4 /* ViewController_iPhone.xib in Resources */ = {isa = PBXBuildFile; fileRef = 65D2294317391CD3000BE0B4 /* ViewController_iPhone.xib */; };
 		65D2294817391CD3000BE0B4 /* ViewController_iPad.xib in Resources */ = {isa = PBXBuildFile; fileRef = 65D2294617391CD3000BE0B4 /* ViewController_iPad.xib */; };
 		65D229511739369F000BE0B4 /* FMShuttersView.m in Sources */ = {isa = PBXBuildFile; fileRef = 65D229501739369F000BE0B4 /* FMShuttersView.m */; };
+		65D2295317393719000BE0B4 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 65D2295217393719000BE0B4 /* QuartzCore.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -42,6 +43,7 @@
 		65D2294717391CD3000BE0B4 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/ViewController_iPad.xib; sourceTree = "<group>"; };
 		65D2294F1739369F000BE0B4 /* FMShuttersView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FMShuttersView.h; sourceTree = "<group>"; };
 		65D229501739369F000BE0B4 /* FMShuttersView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FMShuttersView.m; sourceTree = "<group>"; };
+		65D2295217393719000BE0B4 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -49,6 +51,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				65D2295317393719000BE0B4 /* QuartzCore.framework in Frameworks */,
 				65D2292917391CD3000BE0B4 /* UIKit.framework in Frameworks */,
 				65D2292B17391CD3000BE0B4 /* Foundation.framework in Frameworks */,
 				65D2292D17391CD3000BE0B4 /* CoreGraphics.framework in Frameworks */,
@@ -79,9 +82,10 @@
 		65D2292717391CD3000BE0B4 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				65D2292817391CD3000BE0B4 /* UIKit.framework */,
-				65D2292A17391CD3000BE0B4 /* Foundation.framework */,
 				65D2292C17391CD3000BE0B4 /* CoreGraphics.framework */,
+				65D2292A17391CD3000BE0B4 /* Foundation.framework */,
+				65D2295217393719000BE0B4 /* QuartzCore.framework */,
+				65D2292817391CD3000BE0B4 /* UIKit.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
