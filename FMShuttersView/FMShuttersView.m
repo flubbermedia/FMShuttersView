@@ -146,34 +146,61 @@
         ratio = (ratio > -1) ? ratio : -1;
 		
 		CGFloat angle = CGFLOAT_DEFINED;
+		CGFloat zoom = 0;
 		
 		switch (_type) {
 			case ShutterTypeCenterDown:
 				angle = M_PI_2 + (M_PI_2 * ratio);
 				break;
+			case ShutterTypeAlignedDown:
+				angle = M_PI_2 + (M_PI_2 * ratio);
+				zoom = _shutterSize.width * 0.5 * sinf(fabsf(angle));
+				break;
 			case ShutterTypeCenterUp:
 				angle = - (M_PI_2 + (M_PI_2 * ratio));
 				break;
-			case ShutterTypeAlignedDown:
-				break;
 			case ShutterTypeAlignedUp:
+				angle = - (M_PI_2 + (M_PI_2 * ratio));
+				zoom = -_shutterSize.width * 0.5 * sinf(fabsf(angle));
 				break;
 		}
 		
 		animated ? nil : [CATransaction setAnimationDuration:0];
-		layer.sublayerTransform = [self defaultTransform3DRotated:angle];
+		layer.anchorPointZ = zoom;
+		layer.sublayerTransform = [self defaultTransform3DRotated:angle zoom:zoom];
 		
 		CALayer *shadowLayer = [layer.sublayers objectAtIndex:2];
 		shadowLayer.opacity = 0.8 * (1 - fabsf(ratio));
 	}
 }
 
-- (CATransform3D)defaultTransform3DRotated:(CGFloat)angle
+- (CATransform3D)defaultTransform3DRotated:(CGFloat)angle zoom:(CGFloat)zoom
 {
     CATransform3D transform = CATransform3DIdentity;
 	transform.m34 = -1.0 / (4.66 * _shutterSize.width);
+	transform = CATransform3DTranslate(transform, 0.0, 0.0, -zoom);
     transform = CATransform3DRotate(transform, angle, 0.0, 1.0, 0.0);
+	transform = CATransform3DTranslate(transform, 0.0, 0.0, zoom);
     return transform;
 }
+
+
+//- (CATransform3D)defaultTransform3DRotated:(CGFloat)angle zoom:(CGFloat)zoom
+//{
+//    CATransform3D transform = CATransform3DIdentity;
+//    transform.m34 = -1.0 / (1.7 * _faceSize.width);
+//    transform = CATransform3DTranslate(transform, 0.0, 0.0, -_faceSize.width * 0.5 + zoom);
+//    transform = CATransform3DRotate(transform, angle, 0.0, 1.0, 0.0);
+//    transform = CATransform3DTranslate(transform, 0.0, 0.0, _faceSize.width * 0.5 + zoom);
+//    return transform;
+//}
+//
+//- (void)updateBaselayerWithAngle:(CGFloat)angle zoom:(CGFloat)zoom animated:(BOOL)animated
+//{
+//    animated ? nil : [CATransaction setAnimationDuration:0];
+//    _baseLayer.anchorPointZ = zoom;
+//    _baseLayer.sublayerTransform = [self defaultTransform3DRotated:angle zoom:zoom];
+//	[self updateShadowsWithAngle:angle];
+//}
 
 @end

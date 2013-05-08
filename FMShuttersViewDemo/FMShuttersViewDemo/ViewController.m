@@ -20,7 +20,7 @@
 {
     [super viewDidLoad];
     
-    CGRect frame = CGRectMake(0, 0, 300, 120);
+    CGRect frame = CGRectMake(0, 0, 300, 110);
     
     // front view
     UIImage *image1 = [UIImage imageNamed:@"img01.jpg"];
