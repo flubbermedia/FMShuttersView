@@ -107,6 +107,7 @@
 - (void)didPan:(UIPanGestureRecognizer *)gesture
 {
 	CGPoint location = [gesture locationInView:self];
+	CGPoint velocity = [gesture velocityInView:self];
 	
 	if (gesture.state == UIGestureRecognizerStateBegan)
     {
@@ -120,7 +121,14 @@
 	
 	if (gesture.state == UIGestureRecognizerStateEnded)
     {
-		location.x = (location.x > self.bounds.size.width * 0.5) ? self.bounds.size.width : 0;
+		if (fabsf(velocity.x) > 1000)
+		{
+			location.x = (velocity.x > 0) ? self.bounds.size.width : 0;
+		}
+		else
+		{
+			location.x = (location.x > self.bounds.size.width * 0.5) ? self.bounds.size.width : 0;
+		}
 		[self updateShutterLayersForLocation:location range:0 animated:YES];
 	}
 }
@@ -137,7 +145,20 @@
 		ratio = (ratio < 1) ? ratio : 1;
         ratio = (ratio > -1) ? ratio : -1;
 		
-		CGFloat angle = M_PI_2 + (M_PI_2 * ratio);
+		CGFloat angle = CGFLOAT_DEFINED;
+		
+		switch (_type) {
+			case ShutterTypeCenterDown:
+				angle = M_PI_2 + (M_PI_2 * ratio);
+				break;
+			case ShutterTypeCenterUp:
+				angle = - (M_PI_2 + (M_PI_2 * ratio));
+				break;
+			case ShutterTypeAlignedDown:
+				break;
+			case ShutterTypeAlignedUp:
+				break;
+		}
 		
 		animated ? nil : [CATransaction setAnimationDuration:0];
 		layer.sublayerTransform = [self defaultTransform3DRotated:angle];

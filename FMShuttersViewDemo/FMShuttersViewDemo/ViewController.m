@@ -20,7 +20,7 @@
 {
     [super viewDidLoad];
     
-    CGRect frame = CGRectMake(0, 0, 300, 150);
+    CGRect frame = CGRectMake(0, 0, 300, 120);
     
     // front view
     UIImage *image1 = [UIImage imageNamed:@"img01.jpg"];
@@ -37,9 +37,26 @@
     backView.clipsToBounds = YES;
     
     // shutters view
-    FMShuttersView *shuttersView = [[FMShuttersView alloc] initWithFrontView:frontView backView:backView numberOfShutters:20];
-    shuttersView.center = CGPointMake(CGRectGetWidth(self.view.frame)/2, CGRectGetHeight(self.view.frame)/2);
-	[self.view addSubview:shuttersView];
+    FMShuttersView *shuttersView1 = [[FMShuttersView alloc] initWithFrontView:frontView backView:backView numberOfShutters:20];
+    shuttersView1.center = CGPointMake(CGRectGetWidth(self.view.frame)/2, CGRectGetHeight(frame)/2 + 10 + 0 * (10 + CGRectGetHeight(frame)));
+	[self.view addSubview:shuttersView1];
+	
+	FMShuttersView *shuttersView2 = [[FMShuttersView alloc] initWithFrontView:frontView backView:backView numberOfShutters:20];
+    shuttersView2.type = ShutterTypeCenterUp;
+	shuttersView2.center = CGPointMake(CGRectGetWidth(self.view.frame)/2, CGRectGetHeight(frame)/2 + 10 + 1 * (10 + CGRectGetHeight(frame)));
+	[self.view addSubview:shuttersView2];
+	
+	FMShuttersView *shuttersView3 = [[FMShuttersView alloc] initWithFrontView:frontView backView:backView numberOfShutters:20];
+    shuttersView3.type = ShutterTypeAlignedDown;
+	shuttersView3.center = CGPointMake(CGRectGetWidth(self.view.frame)/2, CGRectGetHeight(frame)/2 + 10 + 2 * (10 + CGRectGetHeight(frame)));
+	[self.view addSubview:shuttersView3];
+	
+	FMShuttersView *shuttersView4 = [[FMShuttersView alloc] initWithFrontView:frontView backView:backView numberOfShutters:20];
+    shuttersView4.type = ShutterTypeAlignedUp;
+	shuttersView4.center = CGPointMake(CGRectGetWidth(self.view.frame)/2, CGRectGetHeight(frame)/2 + 10 + 3 * (10 + CGRectGetHeight(frame)));
+	[self.view addSubview:shuttersView4];
+	
+	
 }
 
 - (void)didReceiveMemoryWarning

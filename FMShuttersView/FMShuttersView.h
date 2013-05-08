@@ -8,8 +8,16 @@
 
 #import <UIKit/UIKit.h>
 
+typedef enum {
+	ShutterTypeCenterDown = 0,
+	ShutterTypeCenterUp,
+	ShutterTypeAlignedDown,
+	ShutterTypeAlignedUp
+} ShutterType;
+
 @interface FMShuttersView : UIView
 
+@property (assign) ShutterType type;
 @property (readonly) UIView *frontView;
 @property (readonly) UIView *backView;
 @property (readonly) NSInteger numberOfShutters;
