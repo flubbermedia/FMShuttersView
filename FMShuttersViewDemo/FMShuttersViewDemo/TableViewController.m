@@ -23,11 +23,13 @@
     [super viewDidLoad];
     
     NSMutableArray *m_datasource = [NSMutableArray new];
+    CGFloat hue = 1;
     for (int i=0; i<100; i++) {
         [m_datasource addObject:@{
-         @"color": [UIColor colorWithHue:(arc4random()%100)*0.01 saturation:0.3 brightness:0.8 alpha:1.0],
+         @"color": [UIColor colorWithHue:hue saturation:0.3 brightness:0.8 alpha:1.0],
          @"text": [NSString stringWithFormat:@"Row %.2d", i],
          }];
+        hue = (hue > 0) ? (hue - 0.05) : 1;
     }
     _datasource = [NSArray arrayWithArray:m_datasource];
 }
